@@ -258,7 +258,7 @@
 
         async function setLanguage(code) {
             try {
-                const res = await fetch(`locales/${code}.json`, { cache: 'no-store' });
+                const res = await fetch(`locales/${code}.json?v=20260701b`, { cache: 'no-store' });
                 if (!res.ok) throw new Error('locale file not found');
                 const strings = await res.json();
                 document.querySelectorAll('[data-i18n]').forEach(el => {
