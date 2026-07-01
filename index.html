@@ -46,14 +46,28 @@
                 <span class="text-2xl font-bold heading-font tracking-tight">WardScope®</span>
             </div>
             <div class="hidden md:flex items-center gap-8 text-sm font-medium">
-                <a href="index.html" class="text-cyan-400 font-semibold">Home</a>
-                <a href="features.html" class="hover:text-cyan-400 transition">Features</a>
-                <a href="solutions.html" class="hover:text-cyan-400 transition">Solutions</a>
-                <a href="pricing.html" class="hover:text-cyan-400 transition">Pricing</a>
-                <a href="affiliates.html" class="hover:text-cyan-400 transition">Affiliates</a>
+                <a href="index.html" class="text-cyan-400 font-semibold" data-i18n="nav.home">Home</a>
+                <a href="features.html" class="hover:text-cyan-400 transition" data-i18n="nav.features">Features</a>
+                <a href="solutions.html" class="hover:text-cyan-400 transition" data-i18n="nav.solutions">Solutions</a>
+                <a href="pricing.html" class="hover:text-cyan-400 transition" data-i18n="nav.pricing">Pricing</a>
+                <a href="affiliates.html" class="hover:text-cyan-400 transition" data-i18n="nav.affiliates">Affiliates</a>
             </div>
             <div class="flex items-center gap-4">
-                <a href="pricing.html" class="bg-white text-black px-6 py-3 rounded-2xl font-semibold hover:bg-cyan-400 transition">See Pricing</a>
+                <!-- Language selector -->
+                <div class="relative">
+                    <button type="button" id="site-lang-toggle" class="flex items-center gap-2 text-zinc-400 hover:text-white text-sm border border-zinc-800 rounded-xl px-3 py-2 transition">
+                        <i class="fas fa-globe"></i>
+                        <span id="site-lang-label">EN</span>
+                        <i class="fas fa-chevron-down text-xs"></i>
+                    </button>
+                    <div id="site-lang-panel" class="hidden absolute right-0 z-50 mt-2 w-56 bg-zinc-900 border border-zinc-800 rounded-2xl shadow-xl overflow-hidden">
+                        <div class="p-2 border-b border-zinc-800">
+                            <input type="text" id="site-lang-search" placeholder="Search languages&hellip;" class="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-3 py-2 text-xs focus:outline-none focus:border-cyan-400">
+                        </div>
+                        <div id="site-lang-options" class="max-h-72 overflow-y-auto p-1"></div>
+                    </div>
+                </div>
+                <a href="pricing.html" class="bg-white text-black px-6 py-3 rounded-2xl font-semibold hover:bg-cyan-400 transition" data-i18n="nav.cta">See Pricing</a>
             </div>
         </div>
     </nav>
@@ -62,8 +76,8 @@
     <section class="pt-32 pb-20 bg-black">
         <div class="max-w-6xl mx-auto px-6">
             <div class="text-center mb-16">
-                <h2 class="text-5xl font-bold heading-font tracking-tight mb-4">The WardScope&reg; Lineup</h2>
-                <p class="text-xl text-zinc-400 max-w-2xl mx-auto">Four tools, one mission: measure what other instruments miss.</p>
+                <h2 class="text-5xl font-bold heading-font tracking-tight mb-4" data-i18n="hero.title">The WardScope&reg; Lineup</h2>
+                <p class="text-xl text-zinc-400 max-w-2xl mx-auto" data-i18n="hero.subtitle">Four tools, one mission: measure what other instruments miss.</p>
             </div>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -74,8 +88,8 @@
                         <i class="fas fa-display text-cyan-400"></i>
                     </div>
                     <h3 class="text-xl font-bold heading-font mb-2">WardScope&reg; PC Analyzer</h3>
-                    <p class="text-zinc-400 text-sm mb-4">Real-time FFT spectrum analysis for Windows. Four resolution tiers, from free to 3Hz precision.</p>
-                    <span id="pc-toggle-label" class="text-cyan-400 text-sm font-medium group-hover:underline">What it does &rarr;</span>
+                    <p class="text-zinc-400 text-sm mb-4" data-i18n="card.pc.desc">Real-time FFT spectrum analysis for Windows. Four resolution tiers, from free to 3Hz precision.</p>
+                    <span id="pc-toggle-label" class="text-cyan-400 text-sm font-medium group-hover:underline" data-i18n="cta.whatItDoes">What it does &rarr;</span>
                 </button>
 
                 <!-- Box 2: WardScope USB Mic Edition -->
@@ -84,8 +98,8 @@
                         <i class="fas fa-microphone text-green-400"></i>
                     </div>
                     <h3 class="text-xl font-bold heading-font mb-2">WardScope&reg; USB Mic Edition</h3>
-                    <p class="text-zinc-400 text-sm mb-4">Turn your Android phone into a field analyzer with full USB microphone support.</p>
-                    <span class="text-green-400 text-sm font-medium group-hover:underline">What it does &rarr;</span>
+                    <p class="text-zinc-400 text-sm mb-4" data-i18n="card.mic.desc">Turn your Android phone into a field analyzer with full USB microphone support.</p>
+                    <span class="text-green-400 text-sm font-medium group-hover:underline" data-i18n="cta.whatItDoes">What it does &rarr;</span>
                 </button>
 
                 <!-- Box 3: How Spectrum Analyzers Work -->
@@ -93,9 +107,9 @@
                     <div class="w-14 h-14 bg-purple-500/10 rounded-2xl flex items-center justify-center text-3xl mb-6">
                         <i class="fas fa-wave-square text-purple-400"></i>
                     </div>
-                    <h3 class="text-xl font-bold heading-font mb-2">How Spectrum Analyzers Work</h3>
-                    <p class="text-zinc-400 text-sm mb-4">New to FFT analysis? A plain-language guide to frequency, resolution, and what the numbers mean.</p>
-                    <span class="text-purple-400 text-sm font-medium group-hover:underline">Read the guide &rarr;</span>
+                    <h3 class="text-xl font-bold heading-font mb-2" data-i18n="card.how.title">How Spectrum Analyzers Work</h3>
+                    <p class="text-zinc-400 text-sm mb-4" data-i18n="card.how.desc">New to FFT analysis? A plain-language guide to frequency, resolution, and what the numbers mean.</p>
+                    <span class="text-purple-400 text-sm font-medium group-hover:underline" data-i18n="cta.readGuide">Read the guide &rarr;</span>
                 </button>
 
                 <!-- Box 4: WardScope Data Collector -->
@@ -104,8 +118,8 @@
                         <i class="fas fa-folder-open text-amber-400"></i>
                     </div>
                     <h3 class="text-xl font-bold heading-font mb-2">WardScope&reg; Data Collector</h3>
-                    <p class="text-zinc-400 text-sm mb-4">Organize photos, video, audio, and GPS by project. Built for field inspections, not lab work.</p>
-                    <span class="text-amber-400 text-sm font-medium group-hover:underline">What it does &rarr;</span>
+                    <p class="text-zinc-400 text-sm mb-4" data-i18n="card.dc.desc">Organize photos, video, audio, and GPS by project. Built for field inspections, not lab work.</p>
+                    <span class="text-amber-400 text-sm font-medium group-hover:underline" data-i18n="cta.whatItDoes">What it does &rarr;</span>
                 </button>
 
             </div>
@@ -113,7 +127,7 @@
             <!-- Expandable PC Feature Presentation -->
             <div id="pc-features-panel" class="hidden mt-8 bg-zinc-950 border border-cyan-900/50 rounded-3xl p-6 md:p-10 overflow-hidden relative">
                 <div class="flex items-center justify-between mb-5">
-                    <h4 class="text-xs sm:text-sm font-semibold text-cyan-400 tracking-widest uppercase">WardScope&reg; PC Analyzer &mdash; Feature Walkthrough</h4>
+                    <h4 class="text-xs sm:text-sm font-semibold text-cyan-400 tracking-widest uppercase">WardScope&reg; PC Analyzer &mdash; <span data-i18n="panel.featureWalkthrough">Feature Walkthrough</span></h4>
                     <button onclick="togglePcFeatures()" class="text-zinc-500 hover:text-white transition text-xl leading-none flex-shrink-0 ml-4" aria-label="Close">
                         <i class="fas fa-xmark"></i>
                     </button>
@@ -138,7 +152,7 @@
             <!-- Expandable USB Mic Edition Feature Presentation -->
             <div id="mic-features-panel" class="hidden mt-8 bg-zinc-950 border border-green-900/50 rounded-3xl p-6 md:p-10 overflow-hidden relative">
                 <div class="flex items-center justify-between mb-5">
-                    <h4 class="text-xs sm:text-sm font-semibold text-green-400 tracking-widest uppercase">WardScope&reg; USB Mic Edition &mdash; Feature Walkthrough</h4>
+                    <h4 class="text-xs sm:text-sm font-semibold text-green-400 tracking-widest uppercase">WardScope&reg; USB Mic Edition &mdash; <span data-i18n="panel.featureWalkthrough">Feature Walkthrough</span></h4>
                     <button onclick="toggleMicFeatures()" class="text-zinc-500 hover:text-white transition text-xl leading-none flex-shrink-0 ml-4" aria-label="Close">
                         <i class="fas fa-xmark"></i>
                     </button>
@@ -163,7 +177,7 @@
             <!-- Expandable How Spectrum Analyzers Work Presentation -->
             <div id="how-it-works-panel" class="hidden mt-8 bg-zinc-950 border border-purple-900/50 rounded-3xl p-6 md:p-10 overflow-hidden relative">
                 <div class="flex items-center justify-between mb-5">
-                    <h4 class="text-xs sm:text-sm font-semibold text-purple-400 tracking-widest uppercase">How Spectrum Analyzers Work</h4>
+                    <h4 class="text-xs sm:text-sm font-semibold text-purple-400 tracking-widest uppercase" data-i18n="card.how.title">How Spectrum Analyzers Work</h4>
                     <button onclick="toggleHowItWorks()" class="text-zinc-500 hover:text-white transition text-xl leading-none flex-shrink-0 ml-4" aria-label="Close">
                         <i class="fas fa-xmark"></i>
                     </button>
@@ -188,7 +202,7 @@
             <!-- Expandable Data Collector Feature Presentation -->
             <div id="dc-features-panel" class="hidden mt-8 bg-zinc-950 border border-amber-900/50 rounded-3xl p-6 md:p-10 overflow-hidden relative">
                 <div class="flex items-center justify-between mb-5">
-                    <h4 class="text-xs sm:text-sm font-semibold text-amber-400 tracking-widest uppercase">WardScope&reg; Data Collector &mdash; Feature Walkthrough</h4>
+                    <h4 class="text-xs sm:text-sm font-semibold text-amber-400 tracking-widest uppercase">WardScope&reg; Data Collector &mdash; <span data-i18n="panel.featureWalkthrough">Feature Walkthrough</span></h4>
                     <button onclick="toggleDcFeatures()" class="text-zinc-500 hover:text-white transition text-xl leading-none flex-shrink-0 ml-4" aria-label="Close">
                         <i class="fas fa-xmark"></i>
                     </button>
@@ -216,31 +230,31 @@
     <!-- Trusted For -->
     <section class="py-20 bg-black">
         <div class="max-w-6xl mx-auto px-6">
-            <h2 class="text-center text-4xl font-bold heading-font mb-16">Trusted For</h2>
+            <h2 class="text-center text-4xl font-bold heading-font mb-16" data-i18n="trusted.heading">Trusted For</h2>
             <div class="grid md:grid-cols-4 gap-8">
                 <div class="bg-zinc-900 p-8 rounded-3xl text-center card-hover border border-zinc-800">
                     <div class="text-5xl mb-6">🦇</div>
-                    <h3 class="font-semibold">Ultrasound to 99,000 Hz</h3>
-                    <p class="text-zinc-500 text-xs mt-2">Subject to mic/device/soundcard limitations</p>
+                    <h3 class="font-semibold" data-i18n="trusted.ultrasound.title">Ultrasound to 99,000 Hz</h3>
+                    <p class="text-zinc-500 text-xs mt-2" data-i18n="trusted.ultrasound.caption">Subject to mic/device/soundcard limitations</p>
                 </div>
                 <div class="bg-zinc-900 p-8 rounded-3xl text-center card-hover border border-zinc-800">
                     <div class="text-5xl mb-6">🌬️</div>
-                    <h3 class="font-semibold">Wind Turbine Noise</h3>
+                    <h3 class="font-semibold" data-i18n="trusted.wind.title">Wind Turbine Noise</h3>
                 </div>
                 <div class="bg-zinc-900 p-8 rounded-3xl text-center card-hover border border-zinc-800">
                     <div class="text-5xl mb-6">🏠</div>
-                    <h3 class="font-semibold">Community Noise Complaints</h3>
+                    <h3 class="font-semibold" data-i18n="trusted.community.title">Community Noise Complaints</h3>
                 </div>
                 <div class="bg-zinc-900 p-8 rounded-3xl text-center card-hover border border-zinc-800">
                     <div class="text-5xl mb-6">🔧</div>
-                    <h3 class="font-semibold">Vibration Analysis</h3>
+                    <h3 class="font-semibold" data-i18n="trusted.vibration.title">Vibration Analysis</h3>
                 </div>
             </div>
         </div>
     </section>
 
     <footer class="bg-zinc-950 py-12 text-center text-zinc-500 text-sm border-t border-zinc-800">
-        &copy; 2026 WardScope&reg; Technology &middot; <a href="privacy.html" class="hover:text-white">Privacy</a> &middot; <a href="affiliates.html" class="hover:text-white">Affiliates</a> &middot; <a href="mailto:resonancesensor@gmail.com" class="hover:text-white">Contact</a>
+        &copy; 2026 WardScope&reg; Technology &middot; <a href="privacy.html" class="hover:text-white" data-i18n="footer.privacy">Privacy</a> &middot; <a href="affiliates.html" class="hover:text-white" data-i18n="footer.affiliates">Affiliates</a> &middot; <a href="mailto:resonancesensor@gmail.com" class="hover:text-white" data-i18n="footer.contact">Contact</a>
     </footer>
 
     <script>
@@ -362,6 +376,78 @@
         });
         function stepDcFeature(dir, evt) { dcPresentation.step(dir, evt); }
         function toggleDcFeatures() { togglePanel('dc-features-panel', dcPresentation); }
+    </script>
+
+    <script>
+        // --- Site language switcher (reads locales/<code>.json, keyed by data-i18n) ---
+        const siteLanguages = [
+            ["en","English"],["es","Spanish"],["fr","French"],["de","German"],["pt","Portuguese"],
+            ["it","Italian"],["nl","Dutch"],["pl","Polish"],["ro","Romanian"],["ru","Russian"],
+            ["uk","Ukrainian"],["el","Greek"],["cs","Czech"],["sk","Slovak"],["hu","Hungarian"],
+            ["bg","Bulgarian"],["hr","Croatian"],["sr","Serbian"],["sl","Slovenian"],["sv","Swedish"],
+            ["no","Norwegian"],["da","Danish"],["fi","Finnish"],["is","Icelandic"],["et","Estonian"],
+            ["lv","Latvian"],["lt","Lithuanian"],["ga","Irish"],["cy","Welsh"],["mt","Maltese"],
+            ["eu","Basque"],["gl","Galician"],["az","Azerbaijani"],["hy","Armenian"],["ka","Georgian"],
+            ["tr","Turkish"],["he","Hebrew"],["ar","Arabic"],["fa","Persian (Farsi)"],["ps","Pashto"],
+            ["ur","Urdu"],["hi","Hindi"],["bn","Bengali"],["gu","Gujarati"],["mr","Marathi"],
+            ["ta","Tamil"],["th","Thai"],["vi","Vietnamese"],["id","Indonesian"],["ms","Malay"],
+            ["tl","Filipino (Tagalog)"],["ceb","Cebuano"],["ja","Japanese"],["ko","Korean"],
+            ["zh-CN","Chinese (Simplified)"],["zh-TW","Chinese (Traditional)"],["af","Afrikaans"]
+        ];
+
+        const langToggle = document.getElementById('site-lang-toggle');
+        const langPanel = document.getElementById('site-lang-panel');
+        const langOptions = document.getElementById('site-lang-options');
+        const langSearch = document.getElementById('site-lang-search');
+        const langLabel = document.getElementById('site-lang-label');
+
+        function renderLangOptions(filter = '') {
+            langOptions.innerHTML = '';
+            const f = filter.toLowerCase();
+            siteLanguages
+                .filter(([code, name]) => name.toLowerCase().includes(f) || code.toLowerCase().includes(f))
+                .forEach(([code, name]) => {
+                    const btn = document.createElement('button');
+                    btn.type = 'button';
+                    btn.className = 'w-full text-left px-3 py-2 rounded-lg hover:bg-zinc-800 text-sm flex justify-between items-center';
+                    btn.innerHTML = `<span>${name}</span><span class="text-xs text-zinc-500">${code}</span>`;
+                    btn.addEventListener('click', () => setLanguage(code));
+                    langOptions.appendChild(btn);
+                });
+        }
+
+        async function setLanguage(code) {
+            try {
+                const res = await fetch(`locales/${code}.json`, { cache: 'no-store' });
+                if (!res.ok) throw new Error('locale file not found');
+                const strings = await res.json();
+                document.querySelectorAll('[data-i18n]').forEach(el => {
+                    const key = el.getAttribute('data-i18n');
+                    if (strings[key]) el.textContent = strings[key];
+                });
+                document.documentElement.lang = code;
+                localStorage.setItem('wardscope-lang', code);
+                langLabel.textContent = code.toUpperCase();
+            } catch (e) {
+                console.warn('Language file not available yet for', code, e);
+            } finally {
+                langPanel.classList.add('hidden');
+            }
+        }
+
+        langToggle.addEventListener('click', () => langPanel.classList.toggle('hidden'));
+        langSearch.addEventListener('input', () => renderLangOptions(langSearch.value));
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('#site-lang-toggle') && !e.target.closest('#site-lang-panel')) {
+                langPanel.classList.add('hidden');
+            }
+        });
+
+        renderLangOptions();
+
+        // Restore saved language preference on load (defaults to English = no-op)
+        const savedLang = localStorage.getItem('wardscope-lang');
+        if (savedLang && savedLang !== 'en') setLanguage(savedLang);
     </script>
 </body>
 </html>
