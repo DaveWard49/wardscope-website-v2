@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ceb">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply sa WardScope Affiliates</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+        body { font-family: 'Inter', system_ui, sans-serif; }
+    </style>
+</head>
+<body class="bg-zinc-950 text-white min-h-screen">
+    <div class="max-w-2xl mx-auto px-6 py-16">
+        <div class="text-center mb-12">
+            <h1 class="text-5xl font-bold tracking-tighter mb-4">Apil sa WardScope Affiliate Program</h1>
+            <p class="text-xl text-zinc-400">Kadaghanan sa mga aplikasyon maaprobahan sulod sa 48 oras.</p>
+        </div>
+
+        <form action="https://formspree.io/f/mqevpzwz" method="POST" class="space-y-8 bg-zinc-900 p-10 rounded-3xl">
+            <div>
+                <label class="block text-sm font-medium mb-2">Tibuok nga Ngalan</label>
+                <input type="text" name="name" required class="w-full bg-zinc-800 border border-zinc-700 rounded-2xl px-6 py-4 focus:outline-none focus:border-cyan-400">
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium mb-2">Email Address</label>
+                <input type="email" name="email" required class="w-full bg-zinc-800 border border-zinc-700 rounded-2xl px-6 py-4 focus:outline-none focus:border-cyan-400">
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium mb-2">Website / Channel / Social Profile</label>
+                <input type="text" name="website" placeholder="https://imongwebsite.com o @imonghandle" required class="w-full bg-zinc-800 border border-zinc-700 rounded-2xl px-6 py-4 focus:outline-none focus:border-cyan-400">
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium mb-2">Gidak-on sa Audience / Reach</label>
+                <input type="text" name="audience" placeholder="ex. 5,000 kada bulan nga bisita" required class="w-full bg-zinc-800 border border-zinc-700 rounded-2xl px-6 py-4 focus:outline-none focus:border-cyan-400">
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium mb-2">Unsaon nimo pag-promote ang WardScope?</label>
+                <textarea name="promotion-plan" required rows="5" placeholder="Blog posts, YouTube videos, social media, email list, forums, ug uban pa." class="w-full bg-zinc-800 border border-zinc-700 rounded-3xl px-6 py-4 focus:outline-none focus:border-cyan-400"></textarea>
+            </div>
+
+            <button type="submit" class="w-full bg-cyan-500 hover:bg-cyan-400 text-black font-bold py-6 rounded-3xl text-lg transition">
+                Isumite ang Application – Libre Kini
+            </button>
+        </form>
+    </div>
+</body>
+</html>
