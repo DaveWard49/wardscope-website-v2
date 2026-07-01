@@ -9,6 +9,8 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
         body { font-family: 'Inter', system_ui, sans-serif; }
         .heading-font { font-family: 'Space Grotesk', sans-serif; }
+        #lang-panel::-webkit-scrollbar { width: 6px; }
+        #lang-panel::-webkit-scrollbar-thumb { background: #3f3f46; border-radius: 4px; }
     </style>
 </head>
 <body class="bg-zinc-950 text-white min-h-screen">
@@ -44,15 +46,133 @@
                 <textarea name="promotion-plan" required rows="5" placeholder="Blog posts, YouTube videos, social media, email list, forums, etc." class="w-full bg-zinc-800 border border-zinc-700 rounded-3xl px-6 py-4 focus:outline-none focus:border-cyan-400"></textarea>
             </div>
 
+            <!-- Affiliate Kit Language Selector -->
+            <div class="relative">
+                <label class="block text-sm font-medium mb-2">Which language(s) would you like your Affiliate Kit in?</label>
+                <p class="text-xs text-zinc-500 mb-2">Select one or more. We'll email you the kit in the language(s) you choose after approval.</p>
+
+                <button type="button" id="lang-toggle"
+                    class="w-full bg-zinc-800 border border-zinc-700 rounded-2xl px-6 py-4 text-left flex justify-between items-center focus:outline-none focus:border-cyan-400">
+                    <span id="lang-summary" class="text-zinc-400">Select language(s)&hellip;</span>
+                    <svg id="lang-chevron" class="w-4 h-4 text-zinc-400 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </button>
+
+                <div id="lang-panel" class="hidden absolute z-10 mt-2 w-full bg-zinc-800 border border-zinc-700 rounded-2xl shadow-xl overflow-hidden">
+                    <div class="p-3 border-b border-zinc-700">
+                        <input type="text" id="lang-search" placeholder="Search languages&hellip;"
+                            class="w-full bg-zinc-900 border border-zinc-700 rounded-xl px-4 py-2 text-sm focus:outline-none focus:border-cyan-400">
+                    </div>
+                    <div class="max-h-64 overflow-y-auto p-2" id="lang-options"></div>
+                    <div class="flex justify-between items-center p-3 border-t border-zinc-700">
+                        <button type="button" id="lang-clear" class="text-xs text-zinc-400 hover:text-cyan-400">Clear all</button>
+                        <button type="button" id="lang-done" class="text-xs font-medium bg-cyan-500 hover:bg-cyan-400 text-black px-4 py-2 rounded-lg">Done</button>
+                    </div>
+                </div>
+
+                <!-- Hidden field actually submitted to Formspree -->
+                <input type="hidden" name="kit-languages" id="kit-languages-input" required>
+            </div>
+
             <button type="submit" class="w-full bg-cyan-500 hover:bg-cyan-400 text-black font-bold py-6 rounded-3xl text-lg transition">
                 Submit Application – It's Free
             </button>
 
             <p class="text-xs text-zinc-500 mt-8 text-center">
-                By submitting this application, you agree to our 
+                By submitting this application, you agree to our
                 <a href="affiliate-agreement.html" target="_blank" class="text-cyan-400 hover:underline">Affiliate Agreement</a>.
             </p>
         </form>
     </div>
+
+    <script>
+        const languages = [
+            ["en","English"],["es","Spanish"],["fr","French"],["de","German"],["pt","Portuguese"],
+            ["it","Italian"],["nl","Dutch"],["pl","Polish"],["ro","Romanian"],["ru","Russian"],
+            ["uk","Ukrainian"],["el","Greek"],["cs","Czech"],["sk","Slovak"],["hu","Hungarian"],
+            ["bg","Bulgarian"],["hr","Croatian"],["sr","Serbian"],["sl","Slovenian"],["sv","Swedish"],
+            ["no","Norwegian"],["da","Danish"],["fi","Finnish"],["is","Icelandic"],["et","Estonian"],
+            ["lv","Latvian"],["lt","Lithuanian"],["ga","Irish"],["cy","Welsh"],["mt","Maltese"],
+            ["eu","Basque"],["gl","Galician"],["az","Azerbaijani"],["hy","Armenian"],["ka","Georgian"],
+            ["tr","Turkish"],["he","Hebrew"],["ar","Arabic"],["fa","Persian (Farsi)"],["ps","Pashto"],
+            ["ur","Urdu"],["hi","Hindi"],["bn","Bengali"],["gu","Gujarati"],["mr","Marathi"],
+            ["ta","Tamil"],["th","Thai"],["vi","Vietnamese"],["id","Indonesian"],["ms","Malay"],
+            ["tl","Filipino (Tagalog)"],["ceb","Cebuano"],["ja","Japanese"],["ko","Korean"],
+            ["zh-CN","Chinese (Simplified)"],["zh-TW","Chinese (Traditional)"],["zh","Chinese (Generic)"],
+            ["af","Afrikaans"],["iw","Hebrew (legacy code)"]
+        ];
+
+        const optionsEl = document.getElementById('lang-options');
+        const searchEl = document.getElementById('lang-search');
+        const toggleBtn = document.getElementById('lang-toggle');
+        const panel = document.getElementById('lang-panel');
+        const chevron = document.getElementById('lang-chevron');
+        const summary = document.getElementById('lang-summary');
+        const hiddenInput = document.getElementById('kit-languages-input');
+        const clearBtn = document.getElementById('lang-clear');
+        const doneBtn = document.getElementById('lang-done');
+
+        let selected = new Set();
+
+        function renderOptions(filter = '') {
+            optionsEl.innerHTML = '';
+            const f = filter.toLowerCase();
+            languages
+                .filter(([code, name]) => name.toLowerCase().includes(f) || code.toLowerCase().includes(f))
+                .forEach(([code, name]) => {
+                    const row = document.createElement('label');
+                    row.className = 'flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-zinc-700 cursor-pointer text-sm';
+                    row.innerHTML = `
+                        <input type="checkbox" value="${code}" class="w-4 h-4 accent-cyan-400" ${selected.has(code) ? 'checked' : ''}>
+                        <span>${name}</span>
+                        <span class="ml-auto text-xs text-zinc-500">${code}</span>
+                    `;
+                    const cb = row.querySelector('input');
+                    cb.addEventListener('change', () => {
+                        if (cb.checked) selected.add(code); else selected.delete(code);
+                        updateSummary();
+                    });
+                    optionsEl.appendChild(row);
+                });
+        }
+
+        function updateSummary() {
+            if (selected.size === 0) {
+                summary.textContent = 'Select language(s)…';
+                summary.classList.add('text-zinc-400');
+            } else {
+                const names = languages.filter(([c]) => selected.has(c)).map(([, n]) => n);
+                summary.textContent = names.length <= 3 ? names.join(', ') : `${names.length} languages selected`;
+                summary.classList.remove('text-zinc-400');
+            }
+            hiddenInput.value = Array.from(selected).join(', ');
+        }
+
+        toggleBtn.addEventListener('click', () => {
+            panel.classList.toggle('hidden');
+            chevron.classList.toggle('rotate-180');
+        });
+
+        doneBtn.addEventListener('click', () => {
+            panel.classList.add('hidden');
+            chevron.classList.remove('rotate-180');
+        });
+
+        clearBtn.addEventListener('click', () => {
+            selected.clear();
+            updateSummary();
+            renderOptions(searchEl.value);
+        });
+
+        searchEl.addEventListener('input', () => renderOptions(searchEl.value));
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.relative')) {
+                panel.classList.add('hidden');
+                chevron.classList.remove('rotate-180');
+            }
+        });
+
+        renderOptions();
+    </script>
 </body>
 </html>
